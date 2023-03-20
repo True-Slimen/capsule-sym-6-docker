@@ -1,0 +1,31 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+# Front Office
+app_frontoffice_home:
+    path: /accueil
+    controller: App\Controller\FrontOfficeController::home
+
+app_frontoffice_caps:
+    path: /caps
+    controller: App\Controller\FrontOfficeController::caps
+
+app_frontoffice_contact:
+    path: /contact
+    controller: App\Controller\FrontOfficeController::contact
+
+# Back Office
+app_backoffice_home:
+    path: /dashboard
+    controller: App\Controller\BackOfficeController::home
+
+app_backoffice_profil:
+    path: /dashboard/profil
+    controller: App\Controller\BackOfficeController::profil
+
+app_backoffice_manage:
+    path: /dashboard/manage
+    controller: App\Controller\BackOfficeController::manage
