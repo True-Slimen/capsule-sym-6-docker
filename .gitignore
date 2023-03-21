@@ -1,0 +1,10 @@
+
+###> symfony/framework-bundle ###
+/jc-capsule/.env.local
+/jc-capsule/.env.local.php
+/jc-capsule/.env.*.local
+/jc-capsule/config/secrets/prod/prod.decrypt.private.php
+/jc-capsule/public/bundles/
+/jc-capsule/var/
+/jc-capsule/vendor/
+###< symfony/framework-bundle ###
