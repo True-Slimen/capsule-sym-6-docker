@@ -311,8 +311,9 @@ class AppFixtures extends Fixture
 
         $caps = new Caps();
         $caps->setProducer($producerMoet);
-        $producerMoet->setCategory($categoryChampagne);
-        $manager->persist($producerMoet);
+        $caps->setColor('Dorée');
+        $caps->setDraw('lorem ipsum dolor sit amet');
+        $manager->persist($caps);
 
         $manager->flush();
     }

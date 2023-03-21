@@ -25,6 +25,9 @@ class Producer
     #[ORM\OneToMany(mappedBy: 'producer', targetEntity: Caps::class, orphanRemoval: true)]
     private Collection $caps;
 
+    #[ORM\ManyToOne(inversedBy: 'producers')]
+    private ?country $country = null;
+
     public function __construct()
     {
         $this->caps = new ArrayCollection();
@@ -85,6 +88,18 @@ class Producer
                 $cap->setProducer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCountry(): ?country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?country $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }
