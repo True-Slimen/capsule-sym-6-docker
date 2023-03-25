@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Caps;
+use Symfony\Component\Asset\Package;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
-use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
 
 class FrontOfficeController extends AbstractController
@@ -14,12 +16,16 @@ class FrontOfficeController extends AbstractController
 
     #[Route('/accueil')]
     #[Route('/')]
-    public function home(): Response
+    public function home(EntityManagerInterface $entityManager): Response
     {
         $title = "Accueil";
 
+        $capsRepository = $entityManager->getRepository(Caps::class);
+        $caps = $capsRepository->findAll();
+
         return $this->render('frontOffice/home.html.twig', [
-            'title' => $title
+            'title' => $title,
+            'caps' => $caps
         ]);
     }
 

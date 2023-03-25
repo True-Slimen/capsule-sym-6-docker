@@ -142,6 +142,9 @@ class AppFixtures extends Fixture
         $europe->setName('Europe');
         $manager->persist($europe);
 
+        $france = '';
+        $pays_bas = '';
+
         $europeList = [
             "Albanie",
             "Allemagne",
@@ -195,6 +198,11 @@ class AppFixtures extends Fixture
             $europeCountry->setName($value);
             $europeCountry->setContinent($europe);
             $manager->persist($europeCountry);
+            if($value === 'France') {
+                $france = $europeCountry;
+            }else if($value === "Pays-Bas"){
+                $pays_bas = $europeCountry;
+            }
         }
 
         $asia = new Continent();
@@ -292,27 +300,37 @@ class AppFixtures extends Fixture
         }
 
         $categoryChampagne = new Category();
-        $categoryChampagne->setName('Champagne');
+        $categoryChampagne->setName('champagne');
         $manager->persist($categoryChampagne);
 
         $categoryBeer = new Category();
-        $categoryBeer->setName('Bière');
+        $categoryBeer->setName('beer');
         $manager->persist($categoryBeer);
 
         $producerHeineken = new Producer();
         $producerHeineken->setName('Heineken');
         $producerHeineken->setCategory($categoryBeer);
+        $producerHeineken->setCountry($pays_bas);
         $manager->persist($producerHeineken);
 
         $producerMoet = new Producer();
         $producerMoet->setName('Moët et Chandon');
         $producerMoet->setCategory($categoryChampagne);
+        $producerMoet->setCountry($france);
         $manager->persist($producerMoet);
 
         $caps = new Caps();
         $caps->setProducer($producerMoet);
         $caps->setColor('Dorée');
         $caps->setDraw('lorem ipsum dolor sit amet');
+        $caps->setPicturePath('/ch1.png');
+        $manager->persist($caps);
+
+        $caps = new Caps();
+        $caps->setProducer($producerHeineken);
+        $caps->setColor('Verte');
+        $caps->setDraw('lorem ipsum dolor sit amet');
+        $caps->setPicturePath('/suzanne.jpeg');
         $manager->persist($caps);
 
         $manager->flush();

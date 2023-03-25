@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ProducerRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProducerRepository::class)]
@@ -18,20 +16,12 @@ class Producer
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'producers')]
+    #[ORM\ManyToOne]
+    private ?Category $Category = null;
+
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?category $category = null;
-
-    #[ORM\OneToMany(mappedBy: 'producer', targetEntity: Caps::class, orphanRemoval: true)]
-    private Collection $caps;
-
-    #[ORM\ManyToOne(inversedBy: 'producers')]
-    private ?country $country = null;
-
-    public function __construct()
-    {
-        $this->caps = new ArrayCollection();
-    }
+    private ?Country $Country = null;
 
     public function getId(): ?int
     {
@@ -50,56 +40,26 @@ class Producer
         return $this;
     }
 
-    public function getCategory(): ?category
+    public function getCategory(): ?Category
     {
-        return $this->category;
+        return $this->Category;
     }
 
-    public function setCategory(?category $category): self
+    public function setCategory(?Category $Category): self
     {
-        $this->category = $category;
+        $this->Category = $Category;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Caps>
-     */
-    public function getCaps(): Collection
+    public function getCountry(): ?Country
     {
-        return $this->caps;
+        return $this->Country;
     }
 
-    public function addCap(Caps $cap): self
+    public function setCountry(?Country $Country): self
     {
-        if (!$this->caps->contains($cap)) {
-            $this->caps->add($cap);
-            $cap->setProducer($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCap(Caps $cap): self
-    {
-        if ($this->caps->removeElement($cap)) {
-            // set the owning side to null (unless already changed)
-            if ($cap->getProducer() === $this) {
-                $cap->setProducer(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getCountry(): ?country
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?country $country): self
-    {
-        $this->country = $country;
+        $this->Country = $Country;
 
         return $this;
     }

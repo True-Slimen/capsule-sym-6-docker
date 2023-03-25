@@ -5,6 +5,7 @@
 body{
     position: relative;
     min-height: 100vh;
+    color: var(--primary-color);
 }
 
 footer{
@@ -24,7 +25,7 @@ input[type="checkbox"] {
     background-color: #fff;
     margin: 0;
     font: inherit;
-    color:  rgba(0, 0, 0, 0.175);;
+    color:  rgba(0, 0, 0, 0.175);
     width: 0.6em;
     height: 0.6em;
     border: 0.1em solid currentColor;
@@ -42,7 +43,7 @@ input[type="checkbox"] {
     border-radius: 50px;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
-    box-shadow: inset 1em 1em  rgba(0, 0, 0, 0.175);;
+    box-shadow: inset 1em 1em  rgba(0, 0, 0, 0.175);
   }
   
   input[type="checkbox"]:checked::before {

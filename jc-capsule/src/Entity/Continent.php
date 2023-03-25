@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ContinentRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContinentRepository::class)]
@@ -17,14 +15,6 @@ class Continent
 
     #[ORM\Column(length: 64)]
     private ?string $name = null;
-
-    #[ORM\OneToMany(mappedBy: 'continent', targetEntity: country::class, orphanRemoval: true)]
-    private Collection $country;
-
-    public function __construct()
-    {
-        $this->country = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -39,36 +29,6 @@ class Continent
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, country>
-     */
-    public function getCountry(): Collection
-    {
-        return $this->country;
-    }
-
-    public function addCountry(country $country): self
-    {
-        if (!$this->country->contains($country)) {
-            $this->country->add($country);
-            $country->setContinent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCountry(country $country): self
-    {
-        if ($this->country->removeElement($country)) {
-            // set the owning side to null (unless already changed)
-            if ($country->getContinent() === $this) {
-                $country->setContinent(null);
-            }
-        }
 
         return $this;
     }
