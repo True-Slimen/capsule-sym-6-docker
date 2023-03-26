@@ -21,7 +21,9 @@ class FrontOfficeController extends AbstractController
         $title = "Accueil";
 
         $capsRepository = $entityManager->getRepository(Caps::class);
-        $caps = $capsRepository->findAll();
+        $caps = $capsRepository->findBy(
+            ['color' => 'Dorée']
+        );
 
         return $this->render('frontOffice/home.html.twig', [
             'title' => $title,
@@ -30,12 +32,16 @@ class FrontOfficeController extends AbstractController
     }
 
     #[Route('/capsules')]
-    public function caps(): Response
+    public function caps(EntityManagerInterface $entityManager): Response
     {
         $title = "Capsules";
 
-        return $this->render('frontOffice/caps.html.twig', [
-            'title' => $title
+        $capsRepository = $entityManager->getRepository(Caps::class);
+        $caps = $capsRepository->findAll();
+
+        return $this->render('frontOffice/home.html.twig', [
+            'title' => $title,
+            'caps' => $caps
         ]);
     }
 

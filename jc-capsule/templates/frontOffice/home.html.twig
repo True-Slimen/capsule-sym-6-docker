@@ -14,7 +14,7 @@
                     <input type="checkbox" name="activeCard" onclick="activeCard(value, checked)" value="{{loop.index}}">
                   </div>
                   <img class="w-100 p-3" src="{{ asset('uploads/' ~ cap.getProducer().getCategory().name ~ cap.getPicturePath() ) }}" alt="Pas d'image disponible">
-                  {# <h4 class="text-center mt-2">{{ cap.name }}</h4> #}
+                  <h4 class="text-center mt-2">{{ cap.getProducer().name }}</h4>
                   <hr class="col-6 m-auto">
               </div>
               <div class="card jc-card-cap jc-card-cap-bottom p-2" style="z-index:{{ 10000 - loop.index }}">
@@ -23,8 +23,9 @@
                     <li><small>N° Lambert : {{ cap.getNumLambert() }}</small></li>
                     <li><small>Côte de tirage : {{ cap.getCotation() }}</small></li> #}
                     {# <li><small>Ajouté le : {{ cap.getCreatedAt() | date }}</small></li> #}
-                    <li><small>Dessin : {{ cap.getDraw() }}</small></li>
-                    <li><small>Producteur : {{ cap.getProducer().getCategory().name }}</small></li>
+                    <li><small><strong>Description :</strong> {{ cap.getDraw() }}</small></li>
+                    <li class="mt-2"><small><strong>Couleur :</strong> {{ cap.getColor() }}</small></li>
+                    <li class="mt-2"><small><strong>Producteur :</strong> {{ cap.getProducer().getCategory().name }}</small></li>
                   </ul>
               </div>
             </article>
@@ -34,9 +35,10 @@
 
     {% block javascripts %}
       <script>
-        
-        let collectionCapsCard = document.querySelectorAll("div.jc-card-cap-bottom");
+        console.log('heeeey');
         function activeCard(index, checked) {
+            let collectionCapsCard = document.querySelectorAll("div.jc-card-cap-bottom");
+            console.log(collectionCapsCard);
             collectionCapsCard[index - 1].classList.toggle("jc-card-cap-bottom-open");
         }
       </script>
