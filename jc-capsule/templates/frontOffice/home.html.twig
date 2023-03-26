@@ -3,7 +3,7 @@
 {% block body %}
     <section>
         <h1>Bienvenue</h1>
-        <p class="col-6 me-auto">Sur ce site je rassemble et vous présente ma collection de capsule.</p>
+        <p class="col-6 me-auto">Sur ce site je rassemble et vous présente ma collection de capsudddle.</p>
         <div class="row mt-5 col-md-8 mx-auto">
             <h5>Les derniers ajouts :</h5>
 
@@ -35,11 +35,10 @@
 
     {% block javascripts %}
       <script>
-        console.log('heeeey');
         function activeCard(index, checked) {
-            let collectionCapsCard = document.querySelectorAll("div.jc-card-cap-bottom");
-            console.log(collectionCapsCard);
-            collectionCapsCard[index - 1].classList.toggle("jc-card-cap-bottom-open");
+          let collectionCapsCard = document.querySelectorAll("div.jc-card-cap-bottom");
+          
+          collectionCapsCard[index - 1].classList.toggle("jc-card-cap-bottom-open");
         }
       </script>
     {% endblock %}

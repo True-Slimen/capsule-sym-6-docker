@@ -38,7 +38,7 @@ class FrontOfficeController extends AbstractController
         $capsRepository = $entityManager->getRepository(Caps::class);
         $caps = $capsRepository->findAll();
 
-        return $this->render('frontOffice/home.html.twig', [
+        return $this->render('frontOffice/caps.html.twig', [
             'title' => $title,
             'caps' => $caps
         ]);

@@ -10,7 +10,7 @@ app_frontoffice_home:
     controller: App\Controller\FrontOfficeController::home
 
 app_frontoffice_caps:
-    path: /caps
+    path: /capsules
     controller: App\Controller\FrontOfficeController::caps
 
 app_frontoffice_contact:

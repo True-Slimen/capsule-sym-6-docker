@@ -34,13 +34,12 @@
 
   {% block javascripts %}
     <script>
-      
-      let collectionCapsCard = document.querySelectorAll("div.jc-card-cap-bottom");
 
       function activeCard(index, checked) {
-          collectionCapsCard[index - 1].classList.toggle("jc-card-cap-bottom-open");
-      }
+        let collectionCapsCard = document.querySelectorAll("div.jc-card-cap-bottom");
 
+        collectionCapsCard[index - 1].classList.toggle("jc-card-cap-bottom-open");
+      }
     </script>
   {% endblock %}
 {% endblock %}
