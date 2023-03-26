@@ -7,6 +7,8 @@ use Symfony\Component\Asset\Package;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
+use App\Repository\CapsRepository;
+
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
@@ -16,14 +18,11 @@ class FrontOfficeController extends AbstractController
 
     #[Route('/accueil')]
     #[Route('/')]
-    public function home(EntityManagerInterface $entityManager): Response
+    public function home(CapsRepository $capsRepository): Response
     {
         $title = "Accueil";
 
-        $capsRepository = $entityManager->getRepository(Caps::class);
-        $caps = $capsRepository->findBy(
-            ['color' => 'Dorée']
-        );
+        $caps = $capsRepository->findByCreatedCapsAndOrder(4, 'DESC');
 
         return $this->render('frontOffice/home.html.twig', [
             'title' => $title,

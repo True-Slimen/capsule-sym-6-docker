@@ -39,6 +39,18 @@ class CapsRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+    * @return Cap[] Returns the *number* last created caps
+    */
+    public function findByCreatedCapsAndOrder($numbers, $order)
+    {
+        return $this->createQueryBuilder('caps')
+            ->orderBy('caps.created_at', $order)
+            ->setMaxResults($numbers)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Caps[] Returns an array of Caps objects
 //     */
